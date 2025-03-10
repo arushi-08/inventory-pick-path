@@ -29,6 +29,7 @@ class PickPathController {
     public ResponseEntity<APIResponse> findBestPath(@RequestBody APIRequest request) {
 
         Graph<String, DefaultWeightedEdge> graph;
+
         if (request.getGraph().isDirected()) {
             graph = new SimpleDirectedWeightedGraph<>(DefaultWeightedEdge.class);
         } else {
@@ -38,18 +39,12 @@ class PickPathController {
         for (String node : request.getGraph().getNodes()) {
             graph.addVertex(node);
         }
-        for (List<Object> edge : request.getGraph().getEdges()) {
-            if (edge.size() != 3) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Each edge must have 3 elements: source, target, weight");
-            }
-            String source = edge.get(0).toString();
-            String target = edge.get(1).toString();
-            double weight;
-            try {
-                weight = Double.parseDouble(edge.get(2).toString());
-            } catch (NumberFormatException e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Weight must be a number");
-            }
+        for (EdgeDTO edge : request.getGraph().getEdges()) {
+        
+            String source = edge.getSource();
+            String target = edge.getTarget();
+            double weight = edge.getWeight();
+            
             if (!graph.containsVertex(source) || !graph.containsVertex(target)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Edge vertices must exist in the graph");
             }
