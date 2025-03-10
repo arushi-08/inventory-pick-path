@@ -7,11 +7,11 @@
 
 ---
 
-<video width="640" height="360" controls>
-  <source src="demo.mp4" type="video/mp4">
+[<video width="640" height="360" controls>
+  <source src="[demo.mp4](https://github.com/arushi-08/inventory-pick-path/blob/main/demo.mp4)" type="video/mp4">
   Video
 </video>
-
+](https://github.com/arushi-08/inventory-pick-path/blob/main/demo.mp4)
 
 ## Overview
 
