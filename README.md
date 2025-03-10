@@ -1,4 +1,4 @@
-# inventory-pick-path
+# Inventory-pick-path
 
 
 ## Motivation
