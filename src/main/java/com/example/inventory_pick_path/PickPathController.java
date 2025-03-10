@@ -25,7 +25,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/")
 class PickPathController {
 
-    @PostMapping(value="/find-best-path", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/optimize-path", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<APIResponse> findBestPath(@RequestBody APIRequest request) {
 
         Graph<String, DefaultWeightedEdge> graph;
