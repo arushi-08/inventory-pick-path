@@ -7,7 +7,10 @@
 
 ---
 
-![[Video Description](https://user-images.githubusercontent.com/USER_ID/FILE_ID/video.mp4)](https://github.com/arushi-08/inventory-pick-path/blob/main/demo.mp4)
+<video width="640" height="360" controls>
+  <source src="https://github.com/arushi-08/inventory-pick-path/blob/main/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 
 
