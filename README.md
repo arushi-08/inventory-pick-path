@@ -3,13 +3,13 @@
 
 ## Motivation
 
-> I’m passionate about finding innovative ways to solve real-world problems. In the realm of logistics, I see immense potential to improve efficiency and reduce costs with smart technology. I built this project because I truly believe that optimizing inventory operations can lead to faster order fulfillment and happier customers. This project represents my drive to leverage technology to make a tangible impact in high-scale operations like those at Walmart.
+> I’m passionate about finding innovative ways to solve real-world problems.
 
 ---
 
 ## Overview
 
-This project is a proof-of-concept for an optimized inventory pick path solution. It demonstrates how to model a inventory as a graph and compute the most efficient route for picking items. The API uses a combination of a nearest-neighbor heuristic and Dijkstra’s algorithm to determine:
+Proof-of-concept for an optimized inventory pick path solution. It demonstrates how to model a inventory as a graph and compute the most efficient route for picking items. The API uses a combination of a nearest-neighbor heuristic and Dijkstra’s algorithm to determine:
 - High-level order of key nodes (entry, item locations, exit)
 - Detailed path between these nodes
 
