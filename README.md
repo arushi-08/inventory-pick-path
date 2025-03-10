@@ -17,10 +17,10 @@ This project is a proof-of-concept for an optimized inventory pick path solution
 
 ## Key Features
 
-**REST API**: Built using Spring Boot, offering a scalable, maintainable, and production-ready solution.  
-**Graph-Based Routing**: Leverages JGraphT to model inventory layouts and calculate the shortest paths.  
-**Optimized Pick Path**: Uses a nearest-neighbor heuristic to plan the best order for picking items.  
-**Detailed Route Construction**: Separates high-level route planning from detailed navigation steps.  
+**Spring Boot**: maintainable REST API, focussing on business logic.  
+**Graph-Based Routing**: using JGraphT to model inventory layouts and calculate the shortest paths.  
+**Optimized Pick Path**: using a nearest-neighbor heuristic to plan the best order for picking items.  
+**Detailed Route Construction**: separating high-level route planning from detailed navigation steps.  
 
 ---
 
