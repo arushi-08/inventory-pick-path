@@ -7,8 +7,7 @@
 
 ---
 
-[Watch the video](https://github.com/arushi-08/inventory-pick-path/blob/main/demo.mp4)
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pObBoZDsz50/0.jpg)](https://youtu.be/pObBoZDsz50)
 
 
 
