@@ -27,7 +27,7 @@ This project is a proof-of-concept for an optimized warehouse pick path solution
 
 ## Technologies
 
-- **Java 11+**
+- **Java 17.0.11**
 - **Spring Boot**: RESTful API development
 - **JGraphT**: Graph modeling and pathfinding
 - **Lombok**: Boilerplate reduction
