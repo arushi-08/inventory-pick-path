@@ -7,6 +7,8 @@
 
 ---
 
+[![IMAGE ALT TEXT HERE](https://drive.google.com/file/d/109V6WSG2t7ECdS659A4tRDe1xkKAdX5P/view?usp=sharing)
+
 ## Overview
 
 Proof-of-concept for an optimized inventory pick path solution. It demonstrates how to model a inventory as a graph and compute the most efficient route for picking items. The API uses a combination of a nearest-neighbor heuristic and Dijkstra’s algorithm to determine:
