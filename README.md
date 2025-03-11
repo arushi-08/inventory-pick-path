@@ -7,7 +7,7 @@
 
 ---
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pObBoZDsz50/0.jpg)](https://youtu.be/pObBoZDsz50)
+<!--- [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pObBoZDsz50/0.jpg)](https://youtu.be/pObBoZDsz50)  --->
 
 
 
