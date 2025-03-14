@@ -1,4 +1,4 @@
-package com.example.inventory_pick_path;
+package com.example.inventory_pick_path.model;
 
 import java.util.List;
 

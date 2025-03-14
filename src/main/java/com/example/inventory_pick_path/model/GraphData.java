@@ -1,8 +1,7 @@
-package com.example.inventory_pick_path;
+package com.example.inventory_pick_path.model;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class GraphData {
-    
+public class GraphData {
+
      @NotEmpty(message = "Nodes list cannot be empty")
     private List<String> nodes;
 
     @NotEmpty(message = "Edges list cannot be empty")
-    private List<@Valid EdgeDTO> edges;
+    private List<com.example.inventory_pick_path.model.EdgeDTO> edges;
 
     private boolean directed = false;
 }
