@@ -1,23 +1,3 @@
-# Inventory-pick-path
-
-
-## Motivation
-
-> I’m passionate about finding innovative ways to solve real-world problems.
-
----
-
-<!--- [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pObBoZDsz50/0.jpg)](https://youtu.be/pObBoZDsz50)  --->
-
-
-
-## Overview
-
-Proof-of-concept for an inventory pick path solution. It models an inventory as a graph and compute the most efficient route for picking items. The API uses Dijkstra’s algorithm to determine:
-- High-level order of key nodes (entry, item locations, exit)
-- Detailed path between these nodes
-
----
 
 ## Key Features
 
