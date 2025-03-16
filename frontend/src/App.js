@@ -1,8 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import './App.css';
 import GraphEditor from './components/GraphEditor';
 import OrderForm from './components/OrderForm';
 import RouteDashboard from './components/RouteDashboard';
+import RouteSimulation from './components/RouteSimulation';
+
+// Deep equality check utility
+const deepEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 function App() {
   const [graphData, setGraphData] = useState({
@@ -21,38 +26,70 @@ function App() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
 
-  const handleOptimizeRoute = async () => {
-    // Construct payload matching your APIRequest structure
-    const payload = {
-      graph: graphData,
-      order: {
-        start: orderData.start,
-        items: orderData.items,
-        end: orderData.end
-      },
-      algorithm: orderData.algorithm
-    };
+  // Stable graph data updater
+  const stableSetGraphData = useCallback((updater) => {
+    setGraphData(prev => {
+      const newData = typeof updater === 'function' ? updater(prev) : updater;
+      return deepEqual(prev, newData) ? prev : newData;
+    });
+  }, []);
 
+  // Stable order data updater
+  const stableSetOrderData = useCallback((updater) => {
+    setOrderData(prev => {
+      const newData = typeof updater === 'function' ? updater(prev) : updater;
+      return deepEqual(prev, newData) ? prev : newData;
+    });
+  }, []);
+
+  const handleOptimizeRoute = useCallback(async () => {
     try {
+      const payload = {
+        graph: graphData,
+        order: {
+          start: orderData.start,
+          items: orderData.items,
+          end: orderData.end
+        },
+        algorithm: orderData.algorithm
+      };
+
       const response = await axios.post('/find-best-path', payload);
-      setResult(response.data);
+      if (!deepEqual(result, response.data)) {
+        setResult(response.data);
+      }
       setError('');
     } catch (err) {
-      setError(err.response?.data || 'An error occurred');
-      setResult(null);
+      const errMsg = err.response?.data?.message || 'An error occurred';
+      if (error !== errMsg) setError(errMsg);
+      if (result !== null) setResult(null);
     }
-  };
+  }, [graphData, orderData, result, error]);
 
   return (
-    <div className="App" style={{ padding: '2rem' }}>
-      <h1>Inventory Route Optimization System</h1>
-      <GraphEditor graphData={graphData} setGraphData={setGraphData} />
-      <OrderForm orderData={orderData} setOrderData={setOrderData} />
-      <button onClick={handleOptimizeRoute} style={{ marginTop: '1rem', padding: '0.5rem 1rem' }}>
-        Optimize Route
-      </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <RouteDashboard result={result} />
+    <div className="app-container">
+      <div className="left-panel">
+        <h1>Inventory Route Optimization System</h1>
+        <GraphEditor 
+          graphData={graphData} 
+          setGraphData={stableSetGraphData} 
+        />
+        <OrderForm 
+          orderData={orderData} 
+          setOrderData={stableSetOrderData} 
+        />
+        <button onClick={handleOptimizeRoute} className="optimize-btn">
+          Optimize Route
+        </button>
+        {error && <p className="error">{error}</p>}
+        <RouteDashboard result={result} />
+        
+      </div>
+      <div className="right-panel">
+        {result?.route?.length > 0 && (
+          <RouteSimulation route={result.route} />
+        )}
+      </div>
     </div>
   );
 }

@@ -1,34 +1,50 @@
-import React, { useState } from 'react';
+import { isEqual } from 'lodash';
+import { useCallback, useEffect, useState } from 'react'; // Added missing hooks import
 
 const GraphEditor = ({ graphData, setGraphData }) => {
-  // For nodes input, we use a local state to manage comma-separated string.
   const [nodesText, setNodesText] = useState(graphData.nodes.join(', '));
-  const [edges, setEdges] = useState(graphData.edges);
 
-  const handleNodesChange = (e) => {
-    setNodesText(e.target.value);
-    const nodesArr = e.target.value.split(',').map(n => n.trim()).filter(n => n);
-    setGraphData(prev => ({ ...prev, nodes: nodesArr }));
-  };
+  // Sync nodes text with external changes
+  useEffect(() => {
+    setNodesText(graphData.nodes.join(', '));
+  }, [graphData.nodes]);
 
-  const handleAddEdge = () => {
-    setEdges(prev => {
-      const updatedEdges = [...prev, { source: '', target: '', weight: 0 }];
-      setGraphData(prevData => ({ ...prevData, edges: updatedEdges }));
-      return updatedEdges;
+  const handleNodesChange = useCallback((e) => {
+    const value = e.target.value;
+    setNodesText(value);
+    const nodesArr = value.split(',').map(n => n.trim()).filter(Boolean);
+    
+    setGraphData(prev => {
+      if (isEqual(prev.nodes, nodesArr)) return prev;
+      return { ...prev, nodes: nodesArr };
     });
-  };
+  }, [setGraphData]);
 
-  const handleEdgeChange = (index, field, value) => {
-    const updatedEdges = [...edges];
-    updatedEdges[index][field] = field === 'weight' ? parseFloat(value) : value;
-    setEdges(updatedEdges);
-    setGraphData(prev => ({ ...prev, edges: updatedEdges }));
-  };
+  const handleEdgeChange = useCallback((index, field, value) => {
+    setGraphData(prev => {
+      const newEdges = prev.edges.map((edge, i) => {
+        if (i === index) {
+          return {
+            ...edge,
+            [field]: field === 'weight' ? parseFloat(value) || 0 : value
+          };
+        }
+        return edge;
+      });
+      return { ...prev, edges: newEdges };
+    });
+  }, [setGraphData]);
 
-  const handleDirectedChange = (e) => {
+  const handleAddEdge = useCallback(() => {
+    setGraphData(prev => ({
+      ...prev,
+      edges: [...prev.edges, { source: '', target: '', weight: 0 }]
+    }));
+  }, [setGraphData]);
+
+  const handleDirectedChange = useCallback((e) => {
     setGraphData(prev => ({ ...prev, directed: e.target.checked }));
-  };
+  }, [setGraphData]);
 
   return (
     <div style={{ border: '1px solid #ccc', padding: '1rem', marginBottom: '1rem' }}>
@@ -53,8 +69,8 @@ const GraphEditor = ({ graphData, setGraphData }) => {
         />
       </label>
       <h3 style={{ marginTop: '1rem' }}>Edges</h3>
-      {edges.map((edge, index) => (
-        <div key={index} style={{ marginBottom: '0.5rem' }}>
+      {graphData.edges.map((edge, index) => (
+        <div key={`edge-${index}`} style={{ marginBottom: '0.5rem' }}>
           <input
             type="text"
             placeholder="Source"

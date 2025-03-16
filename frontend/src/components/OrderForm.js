@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 const OrderForm = ({ orderData, setOrderData }) => {
-  // Local states to manage input fields
+
   const [start, setStart] = useState(orderData.start);
   const [items, setItems] = useState(orderData.items.join(', '));
   const [end, setEnd] = useState(orderData.end);
   const [algorithm, setAlgorithm] = useState(orderData.algorithm || 'DIJKSTRA');
 
-  // Update parent state whenever local state changes via form submission.
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const itemsArr = items.split(',').map(item => item.trim()).filter(item => item);
@@ -19,7 +19,7 @@ const OrderForm = ({ orderData, setOrderData }) => {
     });
   };
 
-  // Update local state when parent orderData changes externally.
+
   useEffect(() => {
     setStart(orderData.start);
     setItems(orderData.items.join(', '));
