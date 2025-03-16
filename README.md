@@ -44,8 +44,23 @@ It models an inventory as a graph and computes the most efficient route for pick
 
 ## Installation
 ```bash
-git clone https://github.com/yourusername/inventory-route-optimizer.git
-cd inventory-route-optimizer
+git clone https://github.com/arushi-08/inventory-route-optimization-system.git
+cd inventory-route-optimization-system
+```
+
+## Build & Run
+Backend setup:
+```bash
+cd backend
+mvn clean install
+mvn spring-boot:run
+# Server starts at http://localhost:8080
+```
+
+Frontend setup:
+```bash
+cd frontend
 npm install
 npm start
+# Application runs at http://localhost:3000
 ```
