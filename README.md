@@ -47,12 +47,16 @@ It models an inventory as a graph and computes the most efficient route for pick
 git clone https://github.com/arushi-08/inventory-route-optimization-system.git
 cd inventory-route-optimization-system
 ```
-# Backend
+### Backend
+```bash
 cd backend && mvn spring-boot:run
+```
 
-# Frontend (in new terminal)
+### Frontend (in new terminal)
+```bash
 cd frontend && npm install && npm start
+```
 
-# Access:
+### Access:
 Frontend: http://localhost:3000
 Backend API: http://localhost:8080/api
