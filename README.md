@@ -42,25 +42,17 @@ It models an inventory as a graph and computes the most efficient route for pick
 - **State Management**: React Hooks with memoization
 - **API**: Axios for backend communication
 
-## Installation
+## Quick Start (Development)
 ```bash
 git clone https://github.com/arushi-08/inventory-route-optimization-system.git
 cd inventory-route-optimization-system
 ```
+# Backend
+cd backend && mvn spring-boot:run
 
-## Build & Run
-Backend setup:
-```bash
-cd backend
-mvn clean install
-mvn spring-boot:run
-# Server starts at http://localhost:8080
-```
+# Frontend (in new terminal)
+cd frontend && npm install && npm start
 
-Frontend setup:
-```bash
-cd frontend
-npm install
-npm start
-# Application runs at http://localhost:3000
-```
+# Access:
+Frontend: http://localhost:3000
+Backend API: http://localhost:8080/api
