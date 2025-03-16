@@ -1,9 +1,7 @@
 ## Overview
 
-Inventory Route optimization application. It models an inventory as a graph and computes the most efficient route for picking items. The API uses Dijkstra’s algorithm to determine:
-- High-level order of key nodes (entry, item locations, exit)
-- Detailed path between these nodes
-
+A visual tool for designing supply chain networks and calculating optimal inventory collection routes using graph algorithms.
+It models an inventory as a graph and computes the most efficient route for picking items.
 
 <div style="display: inline-flex; align-items: center;">
   <!-- Video Thumbnail -->
@@ -17,3 +15,37 @@ Inventory Route optimization application. It models an inventory as a graph and 
          style="width: 50px; height: auto; margin-left: 5px;">
   </a>
 </div>
+
+
+## Key Features
+**Graph Configuration**  
+- Define warehouse nodes (storage locations) via comma-separated list
+- Create directed/undirected edges with weights
+- Interactive edge management with validation
+- Automatic graph layout using force-directed algorithms
+
+**Route Optimization**  
+- Multiple algorithm support:
+  - **Dijkstra** - Exact shortest path for single orders
+  - **TSP with Nearest Neighbor** - Efficient multi-item collection
+- Multi-item order handling with start/end constraints
+- Real-time path calculation
+
+**Visual Analytics**  
+- Interactive route simulation with speed control
+- Weighted edge visualization
+- Step-through debugging for routes
+
+## Tech Stack
+- **Frontend**: React + ReactFlow (graph visualization)
+- **Algorithms**: Dijkstra, TSP heuristic implementations
+- **State Management**: React Hooks with memoization
+- **API**: Axios for backend communication
+
+## Installation
+```bash
+git clone https://github.com/yourusername/inventory-route-optimizer.git
+cd inventory-route-optimizer
+npm install
+npm start
+```
